@@ -4,14 +4,14 @@
 
 <script>
     twikoo.init({
-        envId: 'https://twikoo-xih3.vercel.app',  // 🔴 你的专属地址填在这里
+        envId: 'https://twikoo-vercel-rho-eight.vercel.app', // ✅ 你的新地址已填入
         el: '#tcomment',
         lang: 'zh-CN',
     })
 </script>
 
 <style>
-    /* 1. 评论框和文字变色 */
+    /* 1. 评论框和文字变色适配 */
     .dark .twikoo .el-input__inner,
     .dark .twikoo .el-textarea__inner,
     .dark .twikoo .tk-preview-container,
@@ -24,12 +24,13 @@
         background-color: #2e3033 !important;
     }
     
-    /* 2. 🔴 关键修复：强制把“设置齿轮”变成白色 */
-    .dark .twikoo .tk-icon svg {
-        fill: #e6edf3 !important; /* 亮白色 */
-    }
-    .dark .twikoo .tk-action-icon svg {
-        fill: #e6edf3 !important;
+    /* 2. 🔴 齿轮显形术：给设置按钮加个白底，确保能看见 */
+    .twikoo .tk-icon.__setting {
+        fill: #999 !important; /* 灰色图标 */
+        background-color: #fff !important; /* 白色背景 */
+        border-radius: 4px; /* 圆角 */
+        padding: 2px;
+        opacity: 1 !important;
     }
     
     /* 3. 间距调整 */

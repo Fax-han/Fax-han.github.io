@@ -1,0 +1,45 @@
+# 基础配置
+baseURL = 'https://Fax-han.github.io/'
+languageCode = 'zh-cn'
+title = 'Fax-han 的博客'
+theme = 'PaperMod'
+
+[params]
+    # 网站描述，搜索引擎会抓取这句
+    description = "Fax-han 的技术与生活记录"
+    
+    # 默认主题颜色 (auto 为跟随系统，也可以填 light 或 dark)
+    defaultTheme = "auto"
+
+    # 首页个人信息卡片
+    [params.profileMode]
+        enabled = true
+        title = "Fax-han"
+        subtitle = "欢迎来到我的个人博客 👋"
+        # 如果你想加头像，把图片放到 static 文件夹，然后取消下面这行的注释并修改文件名
+        # imageUrl = "avatar.jpg"
+        imageWidth = 120
+        imageHeight = 120
+
+    # 社交链接 (已自动填好你的 GitHub)
+    [[params.socialIcons]]
+        name = "github"
+        url = "https://github.com/Fax-han"
+
+# 顶部导航栏
+[menu]
+    [[menu.main]]
+        identifier = "home"
+        name = "首页"
+        url = "/"
+        weight = 10
+    [[menu.main]]
+        identifier = "archives"
+        name = "归档"
+        url = "/archives/"
+        weight = 20
+    [[menu.main]]
+        identifier = "search"
+        name = "搜索"
+        url = "/search/"
+        weight = 30

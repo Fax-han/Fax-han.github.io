@@ -1,20 +1,20 @@
 baseURL = 'https://Fax-han.github.io/'
 languageCode = 'zh-cn'
-title = 'Fax-han 的博客'
+title = "Fanhhh's blog"
 theme = 'PaperMod'
 
 # ⚠️ 必须开启这个，搜索功能才能好用
 outputs = ["HTML", "JSON"]
 
 [params]
-    description = "Fax-han 的技术与生活记录"
+    description = "Fanhhh的技术与生活记录"
     defaultTheme = "auto"
     comments = true # 全局开启评论
 
     # 混合模式：上面是自我介绍，下面是文章列表
     [params.homeInfoParams]
-        Title = "Hi, Fax-han 👋"
-        Content = "欢迎来到我的博客！这里记录了我的**技术学习**与**生活感悟**。"
+        Title = "Welcome，这里是某理工大学的学生的blog 👋"
+        Content = "这里提供一些关于技术的话题，崇尚自由，欢迎大家自由留言"
 
     [[params.socialIcons]]
         name = "github"
@@ -30,7 +30,7 @@ outputs = ["HTML", "JSON"]
     
     [[menu.main]]
         identifier = "archives"
-        name = "归档"
+        name = "文章列表"
         url = "/archives/"
         weight = 20
     

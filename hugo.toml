@@ -20,6 +20,9 @@ theme = 'PaperMod'
         # imageUrl = "avatar.jpg"
         imageWidth = 120
         imageHeight = 120
+        [[params.profileMode.buttons]]
+            name = "进入博客"
+            url = "posts"
 
     # 社交链接 (已自动填好你的 GitHub)
     [[params.socialIcons]]

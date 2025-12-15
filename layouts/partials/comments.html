@@ -15,38 +15,55 @@
 </script>
 
 <script>
-    function setGiscusTheme() {
-        const isDark = document.body.className.includes('dark');
-        const theme = isDark ? 'dark' : 'light';
-        
-        // 发送消息给 Giscus iframe 修改主题
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (iframe) {
-            iframe.contentWindow.postMessage(
-                { giscus: { setConfig: { theme: theme } } },
-                'https://giscus.app'
-            );
+    (function() {
+        // 核心函数：通过检查网页背景颜色来判断主题
+        function getActualTheme() {
+            const style = window.getComputedStyle(document.body);
+            const bgColor = style.backgroundColor; // 获取背景颜色，格式通常是 rgb(29, 30, 32)
+            
+            // 简单的算法：如果背景颜色的 RGB 值很小（说明很暗），那就是深色模式
+            if (bgColor) {
+                const rgb = bgColor.match(/\d+/g);
+                if (rgb) {
+                    const brightness = (parseInt(rgb[0]) + parseInt(rgb[1]) + parseInt(rgb[2])) / 3;
+                    if (brightness < 128) {
+                        return 'dark'; // 背景很暗，肯定是深色模式
+                    }
+                }
+            }
+            return 'light'; // 其他情况默认浅色
         }
-    }
 
-    // 监听 PaperMod 主题切换按钮
-    const themeToggle = document.querySelector('#theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', setGiscusTheme);
-    }
+        function syncGiscusTheme() {
+            const theme = getActualTheme();
+            const iframe = document.querySelector('iframe.giscus-frame');
+            
+            if (iframe) {
+                iframe.contentWindow.postMessage(
+                    { giscus: { setConfig: { theme: theme } } },
+                    'https://giscus.app'
+                );
+                console.log('Giscus 同步颜色:', theme); // 方便调试
+            }
+        }
 
-    // 监听系统深色模式变化
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setGiscusTheme);
+        // --- 触发时机 1: 网页加载后，循环检查 10 次 ---
+        let count = 0;
+        const interval = setInterval(() => {
+            syncGiscusTheme();
+            count++;
+            if (count > 10) clearInterval(interval);
+        }, 1000);
 
-    // 初始加载时稍微延迟一下，确保 iframe 载入后再设置颜色
-    window.addEventListener('load', () => {
-        setTimeout(setGiscusTheme, 1000);
-    });
+        // --- 触发时机 2: 监听右上角主题按钮 ---
+        const toggle = document.querySelector('#theme-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', () => {
+                setTimeout(syncGiscusTheme, 200); // 等网页变色后再同步
+            });
+        }
+
+        // --- 触发时机 3: 监听系统颜色变化 ---
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncGiscusTheme);
+    })();
 </script>
-
-<style>
-    /* 给评论区上方加点间距，稍微好看点 */
-    .giscus {
-        margin-top: 2rem;
-    }
-</style>

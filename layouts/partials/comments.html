@@ -1,0 +1,52 @@
+<script src="https://giscus.app/client.js"
+        data-repo="Fax-han/Fax-han.github.io"
+        data-repo-id="R_kgDOQo6D0A"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOQo6D0M4Cz0VK"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<script>
+    function setGiscusTheme() {
+        const isDark = document.body.className.includes('dark');
+        const theme = isDark ? 'dark' : 'light';
+        
+        // 发送消息给 Giscus iframe 修改主题
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (iframe) {
+            iframe.contentWindow.postMessage(
+                { giscus: { setConfig: { theme: theme } } },
+                'https://giscus.app'
+            );
+        }
+    }
+
+    // 监听 PaperMod 主题切换按钮
+    const themeToggle = document.querySelector('#theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', setGiscusTheme);
+    }
+
+    // 监听系统深色模式变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setGiscusTheme);
+
+    // 初始加载时稍微延迟一下，确保 iframe 载入后再设置颜色
+    window.addEventListener('load', () => {
+        setTimeout(setGiscusTheme, 1000);
+    });
+</script>
+
+<style>
+    /* 给评论区上方加点间距，稍微好看点 */
+    .giscus {
+        margin-top: 2rem;
+    }
+</style>

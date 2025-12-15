@@ -1,48 +1,47 @@
-# 基础配置
 baseURL = 'https://Fax-han.github.io/'
 languageCode = 'zh-cn'
 title = 'Fax-han 的博客'
 theme = 'PaperMod'
 
+# ⚠️ 必须开启这个，搜索功能才能好用
+outputs = ["HTML", "JSON"]
+
 [params]
-    # 网站描述，搜索引擎会抓取这句
     description = "Fax-han 的技术与生活记录"
-    
-    # 默认主题颜色 (auto 为跟随系统，也可以填 light 或 dark)
     defaultTheme = "auto"
+    comments = true # 全局开启评论
 
-    # 首页个人信息卡片
-    [params.profileMode]
-        enabled = true
-        title = "Fax-han"
-        subtitle = "欢迎来到我的个人博客 👋"
-        # 如果你想加头像，把图片放到 static 文件夹，然后取消下面这行的注释并修改文件名
-        # imageUrl = "avatar.jpg"
-        imageWidth = 120
-        imageHeight = 120
-        [[params.profileMode.buttons]]
-            name = "进入博客"
-            url = "posts"
+    # 混合模式：上面是自我介绍，下面是文章列表
+    [params.homeInfoParams]
+        Title = "Hi, Fax-han 👋"
+        Content = "欢迎来到我的博客！这里记录了我的**技术学习**与**生活感悟**。"
 
-    # 社交链接 (已自动填好你的 GitHub)
     [[params.socialIcons]]
         name = "github"
         url = "https://github.com/Fax-han"
 
-# 顶部导航栏
+# 菜单配置
 [menu]
     [[menu.main]]
         identifier = "home"
         name = "首页"
         url = "/"
         weight = 10
+    
     [[menu.main]]
         identifier = "archives"
         name = "归档"
         url = "/archives/"
         weight = 20
+    
+    [[menu.main]]
+        identifier = "tags"
+        name = "标签"
+        url = "/tags/"
+        weight = 30
+
     [[menu.main]]
         identifier = "search"
         name = "搜索"
         url = "/search/"
-        weight = 30
+        weight = 40

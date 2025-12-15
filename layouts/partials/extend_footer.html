@@ -7,3 +7,23 @@
 <span id="busuanzi_container_site_uv" style="display:none">
     访客数 <span id="busuanzi_value_site_uv"></span> 人
 </span>
+<script>
+    function setCusdisTheme(theme) {
+        let cusdis = document.querySelector('#cusdis_thread iframe');
+        if (cusdis) {
+            window.CUSDIS.setTheme(theme === 'dark' ? 'dark' : 'light');
+        }
+    }
+
+    // 监听主题变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        setCusdisTheme(e.matches ? 'dark' : 'light')
+    });
+    
+    // 初始设置
+    window.addEventListener('load', () => {
+        if (document.body.className.includes('dark')) {
+            setCusdisTheme('dark');
+        }
+    });
+</script>

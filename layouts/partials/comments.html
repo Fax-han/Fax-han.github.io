@@ -1,69 +1,28 @@
-<script src="https://giscus.app/client.js"
-        data-repo="Fax-han/Fax-han.github.io"
-        data-repo-id="R_kgDOQo6D0A"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOQo6D0M4Cz0VK"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
-</script>
+<div id="tcomment"></div>
+
+<script src="https://cdn.staticfile.org/twikoo/1.6.32/twikoo.all.min.js"></script>
 
 <script>
-    (function() {
-        // 核心函数：通过检查网页背景颜色来判断主题
-        function getActualTheme() {
-            const style = window.getComputedStyle(document.body);
-            const bgColor = style.backgroundColor; // 获取背景颜色，格式通常是 rgb(29, 30, 32)
-            
-            // 简单的算法：如果背景颜色的 RGB 值很小（说明很暗），那就是深色模式
-            if (bgColor) {
-                const rgb = bgColor.match(/\d+/g);
-                if (rgb) {
-                    const brightness = (parseInt(rgb[0]) + parseInt(rgb[1]) + parseInt(rgb[2])) / 3;
-                    if (brightness < 128) {
-                        return 'dark'; // 背景很暗，肯定是深色模式
-                    }
-                }
-            }
-            return 'light'; // 其他情况默认浅色
-        }
-
-        function syncGiscusTheme() {
-            const theme = getActualTheme();
-            const iframe = document.querySelector('iframe.giscus-frame');
-            
-            if (iframe) {
-                iframe.contentWindow.postMessage(
-                    { giscus: { setConfig: { theme: theme } } },
-                    'https://giscus.app'
-                );
-                console.log('Giscus 同步颜色:', theme); // 方便调试
-            }
-        }
-
-        // --- 触发时机 1: 网页加载后，循环检查 10 次 ---
-        let count = 0;
-        const interval = setInterval(() => {
-            syncGiscusTheme();
-            count++;
-            if (count > 10) clearInterval(interval);
-        }, 1000);
-
-        // --- 触发时机 2: 监听右上角主题按钮 ---
-        const toggle = document.querySelector('#theme-toggle');
-        if (toggle) {
-            toggle.addEventListener('click', () => {
-                setTimeout(syncGiscusTheme, 200); // 等网页变色后再同步
-            });
-        }
-
-        // --- 触发时机 3: 监听系统颜色变化 ---
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncGiscusTheme);
-    })();
+    twikoo.init({
+        envId: 'https://twikoo-xih3.vercel.app',  // 🔴 你的专属地址填在这里
+        el: '#tcomment',
+        lang: 'zh-CN',
+    })
 </script>
+
+<style>
+    .dark .twikoo .el-input__inner,
+    .dark .twikoo .el-textarea__inner,
+    .dark .twikoo .tk-preview-container,
+    .dark .twikoo .tk-content {
+        color: #c9d1d9 !important;
+        background-color: #1d1e20 !important;
+    }
+    .dark .twikoo .tk-meta-input .el-input-group__prepend {
+        color: #c9d1d9 !important;
+        background-color: #2e3033 !important;
+    }
+    #tcomment {
+        margin-top: 2rem;
+    }
+</style>

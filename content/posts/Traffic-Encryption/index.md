@@ -15,5 +15,5 @@ categories=["技术"]
 
 上文提到用到的ua3f的插件是可以搭配shellcrash、openclash使用的，相比于以往的ua2f有更大的优势，也可以单独运行，不依赖任何代理。
 
-![](ua3f.png)
+
 

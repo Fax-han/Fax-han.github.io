@@ -4,7 +4,7 @@ draft = false
 title = '关于校园网共享机制的原理探索以及解决办法'
 tags = ["校园网", "共享"]  # 🔴 注意这里一定要用等于号 =
 categories=["技术"]
-
+typora-root-url = "../../static"
 +++
 
 ## **前言：**
@@ -40,7 +40,7 @@ categories=["技术"]
 
 HTTP 数据包请求头存在一个叫做 User-Agent 的字段，该字段通常能够标识出操作系统类型，例如：
 
-![origin-ua](../../static/images/origin-ua.png)
+![origin-ua](/images/origin-ua.png)
 
 这是原始的UA头，不同设备发出的HTTP数据包请求头里的UA字段都不同，因此校园网很容易就能够判断出一个宿舍里面有多少台设备在用同一个账号。
 
@@ -104,7 +104,7 @@ http://ua.233996.xyz/然后用这个来检测ua头是否被修改了。
 
 由于博主用的ax211连接，路由器用的wifi5，所以速度只能在400多Mbps左右徘徊了
 
-![download.png](../../static/images/download.png)
+![download.png](/images/download.png)
 
 ## 最后：
 

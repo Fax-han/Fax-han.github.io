@@ -1,29 +1,3 @@
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<span id="busuanzi_container_site_pv" style="display:none">
-    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    <span class="post-meta-divider">|</span>
-</span>
-<span id="busuanzi_container_site_uv" style="display:none">
-    访客数 <span id="busuanzi_value_site_uv"></span> 人
-</span>
-<script>
-    function setCusdisTheme(theme) {
-        let cusdis = document.querySelector('#cusdis_thread iframe');
-        if (cusdis) {
-            window.CUSDIS.setTheme(theme === 'dark' ? 'dark' : 'light');
-        }
-    }
-
-    // 监听主题变化
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        setCusdisTheme(e.matches ? 'dark' : 'light')
-    });
-    
-    // 初始设置
-    window.addEventListener('load', () => {
-        if (document.body.className.includes('dark')) {
-            setCusdisTheme('dark');
-        }
-    });
-</script>
+{{- /* Footer custom content area start */ -}}
+{{- /*     Insert any custom code web-analytics, resources, etc. here */ -}}
+{{- /* Footer custom content area end */ -}}

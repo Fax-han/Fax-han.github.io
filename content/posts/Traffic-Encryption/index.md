@@ -77,7 +77,7 @@ categories=["技术"]
 
 然后用[Cloudflare 浏览器检查 | Cloudflare](https://www.cloudflare.com/zh-cn/ssl/encrypted-sni/)来检测自己浏览器的安全性
 
-![cf](cf.png)
+![cf](cf.png![image-20251217204107192](image-20251217204107192.png)
 
 有时候这个网站检测SNI有点问题，检测是否开启SNI以这个网站为准[crypto.cloudflare.com/cdn-cgi/trace](https://crypto.cloudflare.com/cdn-cgi/trace)
 

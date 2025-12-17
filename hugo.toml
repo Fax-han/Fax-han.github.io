@@ -10,16 +10,17 @@ sectionPagesMenu = "main"
 
 [params]
     description = "Fanhhh的技术与生活记录"
+    # 核心设置：auto 表示跟随系统，light 为浅色，dark 为深色
     defaultTheme = "auto"
-    showCodeCopyButtons = true 
-    comments = true 
+    showCodeCopyButtons = true
+    comments = true
     
-    # --- 新增：显示文章元数据（阅读量的前提） ---
+    # --- 文章元数据 ---
     showPostMeta = true
     showReadingTime = true
     showWordCount = true
 
-    # --- 新增：不蒜子访问量统计 ---
+    # --- 扩展参数 (需配合你的代码修改生效) ---
     [params.busuanzi]
         enable = true
 
@@ -28,18 +29,19 @@ sectionPagesMenu = "main"
         envId = 'https://comment.fanhhh.top' 
 
     [params.homeInfoParams]
-        Title = "Welcome，这里是某理工大学的学生的blog 👋"
+        Title = "Welcome👋"
         Content = "这里提供一些关于技术的话题，崇尚自由，欢迎大家自由留言"
 
     [[params.socialIcons]]
         name = "github"
         url = "https://github.com/Fax-han"
 
+# --- 菜单设置 ---
 [menu]
     [[menu.main]]
         identifier = "archives"
         name = "文章列表"
-        url = "/archives" 
+        url = "/archives"
         weight = 20
     
     [[menu.main]]

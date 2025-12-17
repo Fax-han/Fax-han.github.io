@@ -3,16 +3,21 @@ languageCode = 'zh-cn'
 title = "Fanhhh's blog"
 theme = 'PaperMod'
 
-# --- 新增下面这行，确保菜单和页面渲染正常 ---
 sectionPagesMenu = "main"
 
-outputs = ["HTML", "JSON"]
+# --- 修改这里：确保主页生成 JSON 索引 ---
+[outputs]
+    home = ["HTML", "RSS", "JSON"]
 
 [params]
     description = "Fanhhh的技术与生活记录"
     defaultTheme = "auto"
-    showCodeCopyButtons = true # 建议开启，方便复制
+    showCodeCopyButtons = true 
     comments = true 
+
+    [params.twikoo]
+        enable = true
+        envId = 'https://comment.fanhhh.top' 
 
     [params.homeInfoParams]
         Title = "Welcome，这里是某理工大学的学生的blog 👋"
@@ -26,7 +31,7 @@ outputs = ["HTML", "JSON"]
     [[menu.main]]
         identifier = "archives"
         name = "文章列表"
-        url = "/archives" # 建议去掉结尾斜杠
+        url = "/archives" 
         weight = 20
     
     [[menu.main]]

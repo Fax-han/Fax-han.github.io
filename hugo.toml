@@ -3,15 +3,17 @@ languageCode = 'zh-cn'
 title = "Fanhhh's blog"
 theme = 'PaperMod'
 
-# ⚠️ 必须开启这个，搜索功能才能好用
+# --- 新增下面这行，确保菜单和页面渲染正常 ---
+sectionPagesMenu = "main"
+
 outputs = ["HTML", "JSON"]
 
 [params]
     description = "Fanhhh的技术与生活记录"
     defaultTheme = "auto"
-    comments = true # 全局开启评论
+    showCodeCopyButtons = true # 建议开启，方便复制
+    comments = true 
 
-    # 混合模式：上面是自我介绍，下面是文章列表
     [params.homeInfoParams]
         Title = "Welcome，这里是某理工大学的学生的blog 👋"
         Content = "这里提供一些关于技术的话题，崇尚自由，欢迎大家自由留言"
@@ -20,28 +22,21 @@ outputs = ["HTML", "JSON"]
         name = "github"
         url = "https://github.com/Fax-han"
 
-# 菜单配置
 [menu]
-    [[menu.main]]
-        identifier = "home"
-        name = "首页"
-        url = "/"
-        weight = 10
-    
     [[menu.main]]
         identifier = "archives"
         name = "文章列表"
-        url = "/archives/"
+        url = "/archives" # 建议去掉结尾斜杠
         weight = 20
     
     [[menu.main]]
         identifier = "tags"
         name = "标签"
-        url = "/tags/"
+        url = "/tags"
         weight = 30
 
     [[menu.main]]
         identifier = "search"
         name = "搜索"
-        url = "/search/"
+        url = "/search"
         weight = 40

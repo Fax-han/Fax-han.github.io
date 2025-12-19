@@ -23,6 +23,8 @@
     {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
 <meta name="author" content="{{ (partial "author.html" . ) }}">
 <link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
+
+{{- /* Site Verification Tags */}}
 {{- if site.Params.analytics.google.SiteVerificationTag }}
 <meta name="google-site-verification" content="{{ site.Params.analytics.google.SiteVerificationTag }}">
 {{- end }}
@@ -37,8 +39,6 @@
 {{- end }}
 
 {{- /* Styles */}}
-
-{{- /* includes */}}
 {{- $includes := slice }}
 {{- $includes = $includes | append (" " | resources.FromString "assets/css/includes-blank.css")}}
 
@@ -48,23 +48,16 @@
 {{- end }}
 
 {{- $includes_all := $includes | resources.Concat "assets/css/includes.css" }}
-
 {{- $theme_vars := (resources.Get "css/core/theme-vars.css") }}
 {{- $reset := (resources.Get "css/core/reset.css") }}
 {{- $media := (resources.Get "css/core/zmedia.css") }}
 {{- $license_css := (resources.Get "css/core/license.css") }}
 {{- $common := (resources.Match "css/common/*.css") | resources.Concat "assets/css/common.css" }}
-
-{{- /* markup.highlight.noClasses should be set to `false` */}}
 {{- $chroma_styles := (resources.Get "css/includes/chroma-styles.css") }}
 {{- $chroma_mod := (resources.Get "css/includes/chroma-mod.css") }}
 
-{{- /* order is important */}}
 {{- $core := (slice $theme_vars $reset $common $chroma_styles $chroma_mod $includes_all $media) | resources.Concat "assets/css/core.css" | resources.Minify }}
 {{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify }}
-
-{{- /* bundle all required css */}}
-{{- /* Add extended css after theme style */ -}}
 {{- $stylesheet := (slice $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css"  }}
 
 {{- if not site.Params.assets.disableFingerprinting }}
@@ -98,7 +91,7 @@
 <meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#2e2e33" }}">
 <meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#2e2e33" }}">
 
-{{- /* RSS */}}
+{{- /* RSS & Translations */}}
 {{ range .AlternativeOutputFormats -}}
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
 {{ end -}}
@@ -112,7 +105,6 @@
         .top-link {
             display: none;
         }
-
     </style>
     {{- if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark")) }}
     <style>
@@ -129,60 +121,40 @@
                 --border: rgb(51, 51, 51);
                 color-scheme: dark;
             }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
+            .list { background: var(--theme); }
+            .toc { background: var(--entry); }
         }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
     </style>
     {{- end }}
 </noscript>
 
-{{- /* theme-toggle is enabled */}}
+{{- /* Theme Toggle Scripts */}}
 {{- if (not site.Params.disableThemeToggle) }}
-{{- /* theme is light */}}
 {{- if (eq site.Params.defaultTheme "light") }}
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.querySelector("html").dataset.theme = 'dark';
     }
-
 </script>
-{{- /* theme is dark */}}
 {{- else if (eq site.Params.defaultTheme "dark") }}
 <script>
     if (localStorage.getItem("pref-theme") === "light") {
         document.querySelector("html").dataset.theme = 'light';
     }
-
 </script>
 {{- else }}
-{{- /* theme is auto */}}
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.querySelector("html").dataset.theme = 'dark';
     } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
+        document.querySelector("html").dataset.theme = 'light';
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.querySelector("html").dataset.theme = 'dark';
     } else {
         document.querySelector("html").dataset.theme = 'light';
     }
-
 </script>
 {{- end }}
-{{- /* theme-toggle is disabled and theme is auto */}}
 {{- else if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark"))}}
 <script>
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -190,24 +162,29 @@
     } else {
         document.querySelector("html").dataset.theme = 'light';
     }
-
 </script>
 {{- end }}
 
-{{- /* 🚀 Speed Optimization: DNS Prefetch for CDN & Comments */}}
+{{- /* 🚀 Speed Optimization */}}
 <link rel="dns-prefetch" href="https://registry.npmmirror.com">
 <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
 <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
-
-{{- /* 🚀 Speed Optimization: Instant Page (Mouse Hover Preload) */}}
 <script src="https://instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84GO0uHNhxgTG7Lu0sMl090hBLqFmnJX4"></script>
 
 {{- partial "extend_head.html" . -}}
 
-{{- /* Misc */}}
+{{- /* 📊 Analytics & SEO */}}
 {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
-{{- partial "google_analytics.html" . }}
-{{- partial "templates/opengraph.html" . }}
-{{- partial "templates/twitter_cards.html" . }}
-{{- partial "templates/schema_json.html" . }}
+    {{- /* 统一 Google Analytics ID: G-DPGSLJPVYV */}}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DPGSLJPVYV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DPGSLJPVYV');
+    </script>
+    
+    {{- partial "templates/opengraph.html" . -}}
+    {{- partial "templates/twitter_cards.html" . -}}
+    {{- partial "templates/schema_json.html" . -}}
 {{- end -}}

@@ -55,3 +55,8 @@ sectionPagesMenu = "main"
         name = "搜索"
         url = "/search"
         weight = 40
+
+    # --- Google Analytics 设置 ---
+    [services]
+        [services.googleAnalytics]
+            ID = 'G-DPGSLJPVYV'

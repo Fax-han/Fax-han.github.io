@@ -30,7 +30,7 @@ sectionPagesMenu = "main"
 
     [params.homeInfoParams]
         Title = "Welcome👋"
-        Content = "这里提供一些关于技术的话题，崇尚自由，欢迎大家自由留言"
+        Content = "这里提供一些关于技术的话题，崇尚自由，欢迎大家自由留言，联系博主qq更快得到帮助2929416262"
 
     [[params.socialIcons]]
         name = "github"

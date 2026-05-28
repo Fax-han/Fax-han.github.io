@@ -30,8 +30,10 @@ sectionPagesMenu = "main"
 
     [params.homeInfoParams]
         Title = "Welcome👋"
-        Content = "这里提供一些关于技术的话题，崇尚自由，欢迎大家自由留言，联系博主qq更快得到帮助2929416262"
-
+        Content = "这里提供一些关于技术的话题，崇尚自由，欢迎大家自由留言。
+        联系博主qq更快得到帮助3020939106（大号）、2929416262（小号），小号不常登，可加大号
+        以及最近用校园网翻墙避免不了被抓到，但是听说可以用桂电和师大的账号登录，大家可以试试"
+            
     [[params.socialIcons]]
         name = "github"
         url = "https://github.com/Fax-han"
